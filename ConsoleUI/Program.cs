@@ -7,14 +7,14 @@ namespace ConsoleUI
 {
     class Program
     {
+        //DTO Data Transformation Object
         static void Main(string[] args)
         {
-            //  ProductTest();
+              ProductTest();
            //   CategoryTest();
 
+
         }
-
-
 
         private static void CategoryTest()
         {
@@ -26,16 +26,14 @@ namespace ConsoleUI
         }
         private static void ProductTest()
         {
-            EfProductDal efProductDal = new EfProductDal();
-            ProductManager productManager = new ProductManager(efProductDal);
+           
+            ProductManager productManager = new ProductManager(new EfProductDal());
 
-            for (int i = 0; i < 5; i++)
-            {
-                foreach (var product in productManager.GetAllByCategoryId(i))
+                foreach (var product in productManager.GetProductDetails())
                 {
-                    Console.WriteLine(product.CategoryId + " " + product.ProductName);
+                    Console.WriteLine(product.ProductName + " / " + product.CategoryName);
                 }
             }
         }
     }
-}
+
